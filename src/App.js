@@ -4,19 +4,21 @@ import "./App.css";
 function App() {
   async function sendButton(e) {
     e.preventDefault();
-    const response = await fetch({
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      Authorization:
-        "Bearer EAAKGt1fZCIE8BABZBuXObVgSrWZAjUgrCWyUfLU4JIx5c3cqUNrKmqeZB8FULHPSQLiqKPMUpm2ayrZAsXrAcDFzaWFPmmOi7vD5oDdQNS2OIWrwPCmX1FBkBboAFYXantiyLgp8VWAJOEIoBb9DW6RzyssU5H7diJUoogNyyNZBkZBc8fg82aitujihXUpUEJ3jNaxV5bM2wZDZD",
-      body: JSON.stringify({
+    const response = await fetch(
+      "https://graph.facebook.com/v13.0/100129666066310/messages",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        Authorization:
+          "",
         messaging_product: "whatsapp",
+        recipient_type: "individual",
         to: phone,
         text: { body: message },
-      }),
-    });
+      }
+    );
   }
 
   const [phone, setPhone] = useState("");
@@ -26,9 +28,6 @@ function App() {
   };
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
-  };
-  const handleFooterChange = (e) => {
-    setFooter(e.target.value);
   };
 
   return (
